@@ -1,0 +1,44 @@
+@use 'src/styles/vars';
+
+
+.currencies {
+  background-color: vars.$color-light;
+  max-height: 250px;
+  color: vars.$color;
+  padding-top: vars.$gutter;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: vars.$gutter/2;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: vars.$color-light;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: vars.$color;
+    outline: 1px solid black;
+  }
+
+  &__title {
+    padding: vars.$gutter;
+    font-weight: bold;
+  }
+
+  &__list {
+
+    &__item {
+      border-top: 1px solid vars.$color-alt;
+      padding: vars.$gutter;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 1s;
+
+      &:hover {
+        background-color: vars.$color-alt;
+        transition-duration: 0.2s;
+      }
+    }
+  }
+}
