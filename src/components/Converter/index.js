@@ -37,6 +37,8 @@ class Converter extends React.Component {
     // handleToggleClick
     // ainsi, si on "sort" handleToggleClick, son contexte viendra avec
     this.handleToggleClick = this.handleToggleClick.bind(this);
+
+    this.handleToggleClickCurrency = this.handleToggleClickCurrency.bind(this);
   }
 
   handleToggleClick() {
@@ -49,6 +51,13 @@ class Converter extends React.Component {
       // et on met le résultat dans isListOpen, que l'on donne a setState
       isListOpen: !this.state.isListOpen,
     });
+  }
+
+  handleToggleClickCurrency(event) {
+    this.setState({
+      selectedCurrency: event.target.textContent,
+    });
+    console.log(event);
   }
 
   makeConversion() {
@@ -78,8 +87,11 @@ class Converter extends React.Component {
           isOpen={this.state.isListOpen}
           onToggle={this.handleToggleClick}
         />
-        {this.state.isListOpen && <Currencies currencies={currenciesList} />}
-        <Result currency={this.state.selectedCurrency} value={this.makeConversion()} />
+        {this.state.isListOpen && <Currencies currencies={currenciesList} onToggle={this.handleToggleClickCurrency} />}
+        <Result
+          currency={this.state.selectedCurrency}
+          value={this.makeConversion()}
+        />
       </div>
     );
   }
