@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './currencies.scss';
 
-const Currencies = ({ currencies, onToggle }) => (
+const Currencies = ({ currencies, onCurrencyClick }) => (
   <div className="currencies">
     <h2 className="currencies__title">Currencies</h2>
     <ul className="currencies__list">
@@ -21,9 +21,8 @@ const Currencies = ({ currencies, onToggle }) => (
             // on renvoie du JSX dans le callback du map
             <li
               key={currencyItem.name}
-              value={currencyItem.name}
               className="currencies__list__item"
-              onClick={onToggle}
+              onClick={() => onCurrencyClick(currencyItem.name)}
             >
               {currencyItem.name}
             </li>
@@ -41,7 +40,7 @@ Currencies.propTypes = {
       rate: PropTypes.number.isRequired,
     }).isRequired,
   ).isRequired,
-  onToggle: PropTypes.func.isRequired,
+  onCurrencyClick: PropTypes.func.isRequired,
 };
 
 export default Currencies;

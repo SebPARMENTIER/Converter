@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use 'src/styles/vars';
 
 
@@ -9,7 +10,7 @@
   overflow: auto;
 
   &::-webkit-scrollbar {
-    width: vars.$gutter/2;
+    width: math.div(vars.$gutter, 2);
   }
 
   &::-webkit-scrollbar-track {

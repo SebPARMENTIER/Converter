@@ -53,11 +53,10 @@ class Converter extends React.Component {
     });
   }
 
-  handleToggleClickCurrency(event) {
+  handleToggleClickCurrency(newCurrency) {
     this.setState({
-      selectedCurrency: event.target.textContent,
+      selectedCurrency: newCurrency,
     });
-    console.log(event);
   }
 
   makeConversion() {
@@ -87,7 +86,12 @@ class Converter extends React.Component {
           isOpen={this.state.isListOpen}
           onToggle={this.handleToggleClick}
         />
-        {this.state.isListOpen && <Currencies currencies={currenciesList} onToggle={this.handleToggleClickCurrency} />}
+        {this.state.isListOpen && (
+          <Currencies
+            currencies={currenciesList}
+            onCurrencyClick={this.handleToggleClickCurrency}
+          />
+        )}
         <Result
           currency={this.state.selectedCurrency}
           value={this.makeConversion()}
