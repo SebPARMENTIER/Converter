@@ -3,9 +3,20 @@ import PropTypes from 'prop-types';
 
 import './currencies.scss';
 
-const Currencies = ({ currencies, onCurrencyClick }) => (
+const Currencies = ({
+  currencies,
+  onCurrencyClick,
+  searchValue,
+  onSearchChange,
+}) => (
   <div className="currencies">
-    <h2 className="currencies__title">Currencies</h2>
+    <input
+      type="text"
+      placeholder="Rechercher une devise"
+      className="currencies__search"
+      value={searchValue}
+      onChange={onSearchChange}
+    />
     <ul className="currencies__list">
       {
         // on évalue du JS dans des accolades
@@ -41,6 +52,8 @@ Currencies.propTypes = {
     }).isRequired,
   ).isRequired,
   onCurrencyClick: PropTypes.func.isRequired,
+  searchValue: PropTypes.string.isRequired,
+  onSearchChange: PropTypes.func.isRequired,
 };
 
 export default Currencies;

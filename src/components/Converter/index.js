@@ -31,6 +31,7 @@ class Converter extends React.Component {
       isListOpen: true,
       baseAmount: 1,
       selectedCurrency: 'Hong Kong Dollar',
+      search: '',
     };
 
     // on a besoin d'associer explicitement le contexte (this) a la méthode
@@ -39,6 +40,8 @@ class Converter extends React.Component {
     this.handleToggleClick = this.handleToggleClick.bind(this);
 
     this.handleToggleClickCurrency = this.handleToggleClickCurrency.bind(this);
+
+    this.handleSearchChange = this.handleSearchChange.bind(this);
   }
 
   handleToggleClick() {
@@ -53,10 +56,24 @@ class Converter extends React.Component {
     });
   }
 
+  handleSearchChange(event) {
+    this.setState({
+      search: event.target.value,
+    });
+  }
+
   handleToggleClickCurrency(newCurrency) {
     this.setState({
       selectedCurrency: newCurrency,
     });
+  }
+
+  getFilteredCurrencies() {
+    return currenciesList.filter(
+      (currency) => currency.name.toLowerCase().includes(
+        this.state.search.toLowerCase(),
+      ),
+    );
   }
 
   makeConversion() {
@@ -88,7 +105,9 @@ class Converter extends React.Component {
         />
         {this.state.isListOpen && (
           <Currencies
-            currencies={currenciesList}
+            searchValue={this.state.search}
+            onSearchChange={this.handleSearchChange}
+            currencies={this.getFilteredCurrencies()}
             onCurrencyClick={this.handleToggleClickCurrency}
           />
         )}

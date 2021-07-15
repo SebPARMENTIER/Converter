@@ -22,9 +22,16 @@
     outline: 1px solid black;
   }
 
-  &__title {
+  &__search {
     padding: vars.$gutter;
-    font-weight: bold;
+    margin-top: vars.$gutter;
+    width: 100%;
+    border: none;
+    color: vars.$color;
+    font: inherit;
+    &::placeholder {
+      color: vars.$color-alt;
+    }
   }
 
   &__list {
