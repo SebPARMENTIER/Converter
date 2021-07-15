@@ -11,8 +11,25 @@
     font-weight: 700;
   }
 
-  &__amount {
-    margin-top: vars.$gutter;
-    font-size: 1.3rem;
+  &__input {
+    text-align: center;
+    margin: 1rem auto;
+    width: 80%;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    color: vars.$color;
+    border: 3px solid vars.$color-alt;
+
+    &::placeholder {
+      font-size: 1rem;
+      color: vars.$color-alt;
+    }
+  }
+
+  &__euro {
+    margin-left: 0.5rem;
+    color: vars.$color-light;
+    font-size: 1.5rem;
+    vertical-align: middle;
   }
 }

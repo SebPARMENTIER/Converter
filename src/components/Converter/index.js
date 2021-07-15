@@ -29,7 +29,7 @@ class Converter extends React.Component {
     // grace à this.state
     this.state = {
       isListOpen: true,
-      baseAmount: 1,
+      baseAmount: null,
       selectedCurrency: 'Hong Kong Dollar',
       search: '',
     };
@@ -42,6 +42,18 @@ class Converter extends React.Component {
     this.handleToggleClickCurrency = this.handleToggleClickCurrency.bind(this);
 
     this.handleSearchChange = this.handleSearchChange.bind(this);
+
+    this.handleBaseAmountChange = this.handleBaseAmountChange.bind(this);
+  }
+
+  componentDidMount() {
+    document.title = `Conversion de euro vers ${this.state.selectedCurrency}`;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.selectedCurrency !== this.state.selectedCurrency) {
+      document.title = `Conversion de euro vers ${this.state.selectedCurrency}`;
+    }
   }
 
   handleToggleClick() {
@@ -65,6 +77,24 @@ class Converter extends React.Component {
   handleToggleClickCurrency(newCurrency) {
     this.setState({
       selectedCurrency: newCurrency,
+    });
+  }
+
+  handleBaseAmountChange(event) {
+    let newValue;
+
+    // si le nombre n'en est pas un
+    if (Number.isNaN(event.target.valueAsNumber)) {
+      // on le met a null
+      newValue = null;
+    }
+    else {
+      // sinon, on touche a rien
+      newValue = event.target.valueAsNumber;
+    }
+
+    this.setState({
+      baseAmount: newValue,
     });
   }
 
@@ -98,7 +128,10 @@ class Converter extends React.Component {
     // dans render, on renvoie le meme JSX qu'avant, rien ne change ici
     return (
       <div className="app">
-        <Header baseAmount={this.state.baseAmount} />
+        <Header
+          baseAmount={this.state.baseAmount}
+          onAmountChange={this.handleBaseAmountChange}
+        />
         <Toggler
           isOpen={this.state.isListOpen}
           onToggle={this.handleToggleClick}

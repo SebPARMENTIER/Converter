@@ -6,7 +6,7 @@ import './result.scss';
 
 const Result = ({ currency, value }) => (
   <div className="result">
-    <CountUp decimals={2} className="result__amount" end={value} />
+    <CountUp decimals={2} className="result__amount" duration={0.3} end={value} />
     <p className="result_currency">{currency}</p>
   </div>
 );
