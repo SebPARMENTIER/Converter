@@ -22,3 +22,5 @@ Enjoy your converter !
 [https://seb-converter.netlify.app/](https://seb-converter.netlify.app)
 
 ### Stack
+
+![image](docs/stack.png)
